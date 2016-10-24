@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Montauk, NY: A Dynamic 3D Map</title>  
+        <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://d2f25wgezub9nf.cloudfront.net/api/sketchfab-viewer-1.0.0.js"></script>
+        <script src="SketchfabAPIUtility.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
+</head>
+
+<body style="width:640px;margin:0 auto; font-family:Raleway">
+    <!-- Insert an empty iframe -->
+    <div class="iframe"><iframe id="api-frame" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" frameborder="0"></iframe> </div>  
+        
+      <!-- sidebar -->
+    <div class="sidebar">
+      <!-- tab titles -->  
+    <div role="tabpanel" right="0">
+        <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#home1" data-toggle="tab" id= "home" role="tab">Home</a></li>
+        <li><a href="#tabDropDownTwo3" data-toggle="tab" id="2" role="tab">Lighthouse</a></li>
+        <li><a href="#tabDropDownTwo2" data-toggle="tab" id="1" role="tab">Lake Montauk</a></li>
+        <li><a href="#tabDropDownTwo1" data-toggle="tab" id="0" role="tab">Fort Pond</a></li>
+        </ul>    
+
+    <!-- tab content -->
+    <div id="tabContent1" class="tab-content">
+    <div class="tab-pane fade in active" id="home1">
+        <h2>Montauk, NY: A 3D Map</h2>      
+        <p>This is a 3d rendering of Montauk, NY. Montauk is a hamlet on the easternmost shore of Long Island.</p>
+    </div>
+    <div class="tab-pane fade" id="tabDropDownTwo1">
+        <h2>Fort Pond</h2>        
+        <p>A bay off of the Long Island Sound.</p>
+    </div>
+    <div class="tab-pane fade" id="tabDropDownTwo2">
+        <h2>Lake Montauk</h2>         
+        <p>Lake Montauk is a 900-acre embayment.</p>
+    </div>
+    <div class="tab-pane fade" id="tabDropDownTwo3">
+        <h2>Montauk Point Lighthouse</h2>    
+        <p>The oldest lighthouse in New York State. Construction was authorized by President George Washington on April 12, 1792</p>
+    </div>  
+    </div>
+
+    <!-- Material select -->
+    <div class="materials">
+    <div class="material-selected">
+        <i>Add a texture</i>
+    </div>
+    <br><br>
+
+    <div class="material" id="material4">Topographic<img src="http://i.imgur.com/TDGh4Hj.jpg"></div>
+
+    <div class="material" id="material5">Topographic 2<img src="http://i.imgur.com/uCIZPVi.jpg"></div>
+
+    <div class="material" id="material6">Topographic 3<img src="http://i.imgur.com/MI1Yi4k.jpg"></div>
+    <div class="material" id="material3">Surfboards<img src="http://i.imgur.com/sQ44Ljo.jpg"></div>
+    
+    <div class="material" id="color1" background-color="#42dcf4" color= "#42dcf4">Blue<img src="http://i.imgur.com/E2l5eAY.jpg"></div>
+
+    <div class="material" id="color2" background-color="#42dcf4" color= "#42dcf4">Green<img src="http://i.imgur.com/GVzYh5w.jpg"></div>
+    
+    <div class="material" id="reset">Reset <img src="http://i.imgur.com/I7x1c5y.png<"> </div>
+    </div>
+
+<script type="text/javascript">
+
+        var annotationLookup = {};
+        annotationLookup["0"] = 0;
+        annotationLookup["1"] = 1;
+        annotationLookup["2"] = 2;
+
+        function onSketchfabUtilityReady() {
+        // home position   
+                $( '#home' ).click( function() {
+                    sketchfabAPIUtility.api.lookat(
+                        [1, -753.5486725958049, 600], // eye position
+                        [-19.665394996294008, -120.28808869064711, 43.744382789479005],   // target to lookat
+                        2          // duration of the animation in seconds
+                    );
+                }); 
+        // go to new annotation view
+                $( '#0' ).click( function() {
+                    sketchfabAPIUtility.api.gotoAnnotation( 0 );
+                    sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/kWKdpus.jpg');
+
+                } );  
+                
+                
+                $( '#1' ).click( function() {
+                    sketchfabAPIUtility.api.gotoAnnotation( 1 );
+                    sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/jUNZm8G.jpg');
+
+                } );
+
+                $( '#2' ).click( function() {
+                    sketchfabAPIUtility.api.gotoAnnotation( 2 );
+                    sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/IBoWo3W.jpg');
+                });
+
+            // add material functions
+                 $("#material1").on("click", function (event) {
+                sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/IBoWo3W.jpg');
+                });
+                $("#material2").on("click", function (event) {
+                sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/jUNZm8G.jpg');
+                });
+
+                $("#material3").on("click", function (event) {
+                sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/sQ44Ljo.jpg');
+                });
+                $("#material4").on("click", function (event) {
+                sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/eT9x5sE.jpg');
+                });
+
+                $("#material5").on("click", function (event) {
+                sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/e8ke6BA.jpg');
+                });
+
+                $("#material6").on("click", function (event) {
+                sketchfabAPIUtility.setTexture("Mat", sketchfabAPIUtility.AlbedoPBR, 'http://i.imgur.com/7DDelfk.jpg');
+                });
+
+                  
+                //add color  
+                $("#color1").on("click", function (event) {
+                sketchfabAPIUtility.resetTexture("Mat", sketchfabAPIUtility.AlbedoPBR);
+                sketchfabAPIUtility.resetColor("Mat", sketchfabAPIUtility.AlbedoPBR);    
+                sketchfabAPIUtility.setColor("Mat", sketchfabAPIUtility.AlbedoPBR, "#42dcf4");
+                });
+
+                $("#color2").on("click", function (event) {
+                sketchfabAPIUtility.resetTexture("Mat", sketchfabAPIUtility.AlbedoPBR);
+                sketchfabAPIUtility.resetColor("Mat", sketchfabAPIUtility.AlbedoPBR);    
+                sketchfabAPIUtility.setColor("Mat", sketchfabAPIUtility.AlbedoPBR, "#bff442");
+                });
+
+               
+
+                //reset color
+                $("#reset").on("click", function (event) {
+                sketchfabAPIUtility.resetTexture("Mat", sketchfabAPIUtility.AlbedoPBR);
+                sketchfabAPIUtility.resetColor("Mat", sketchfabAPIUtility.AlbedoPBR);
+            });                
+        }
+      
+      function onSketchfabUtilityTextureLoad(loadCount) {
+            if (loadCount > 0) {
+                processTextureLoadDOMTarget.css("display", "block");
+                processTextureLoadDOMTarget[0].innerHTML = "Loading " + loadCount + " textures";
+            } else {
+                processTextureLoadDOMTarget.css("display", "none");
+            }
+        }
+        //init
+      var sketchfabAPIUtility = new SketchfabAPIUtility('155f08313e9d44968f910806113221b4', document.getElementById('api-frame'), onSketchfabUtilityReady);
+    </script>
+</body>
+</html>
